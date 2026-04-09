@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \":*)",
+      "Bash(python -c \"import sys; sys.stdout.reconfigure\\(encoding=''''utf-8''''\\); [print\\(l\\) for l in sys.stdin]\")",
+      "Bash(python modify_doc.py)",
+      "Bash(python scripts/office/pack.py unpacked/ \"C:/Users/shayd/OneDrive/Рабочий стол/Светлицкий курсач/АИС-41_Светлицикий_Всеволод_Олегович_АдмСУБД_Курсовая_работа_v2.docx\" --original \"C:/Users/shayd/OneDrive/Рабочий стол/Светлицкий курсач/АИС-41_Светлицикий_Всеволод_Олегович_АдмСУБД_Курсовая_работа.docx\")",
+      "Bash(PYTHONUTF8=1 python scripts/office/pack.py unpacked/ \"C:/Users/shayd/OneDrive/Рабочий стол/Светлицкий курсач/АИС-41_Светлицикий_Всеволод_Олегович_АдмСУБД_Курсовая_работа_v2.docx\" --original \"C:/Users/shayd/OneDrive/Рабочий стол/Светлицкий курсач/АИС-41_Светлицикий_Всеволод_Олегович_АдмСУБД_Курсовая_работа.docx\")",
+      "Bash(python scripts/office/unpack.py \"C:/Users/shayd/OneDrive/Рабочий стол/Светлицкий курсач/АИС-41_Светлицикий_Всеволод_Олегович_АдмСУБД_Курсовая_работа_v2.docx\" unpacked_v2/)",
+      "Bash(python scripts/office/unpack.py \"C:/Users/shayd/OneDrive/Рабочий стол/Светлицкий курсач/АИС-41_Светлицикий_Всеволод_Олегович_АдмСУБД_Курсовая_работа_v2.docx\" unpacked_v2_check/)",
+      "Bash(python -m markitdown \"C:\\\\Users\\\\shayd\\\\OneDrive\\\\Рабочий стол\\\\Светлицкий курсач\\\\Microsoft PowerPoint Presentation.pptx\")",
+      "Read(//c/Users/shayd/OneDrive/Рабочий стол/Светлицкий курсач/**)",
+      "Bash(python -m markitdown \"Microsoft PowerPoint Presentation.pptx\")",
+      "Bash(pip install:*)",
+      "Bash(PYTHONUTF8=1 python -m markitdown \"Microsoft PowerPoint Presentation.pptx\")",
+      "Bash(PYTHONUTF8=1 python -m markitdown \"C:/Users/shayd/OneDrive/Рабочий стол/Светлицкий курсач/Рассказ по слайдам.docx\")",
+      "Bash(PYTHONUTF8=1 python -c \":*)"
+    ]
+  }
+}

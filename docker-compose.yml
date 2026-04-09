@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  # --- 1. База данных PostgreSQL ---
+  db:
+    image: postgres:15
+    container_name: pii_guard_db
+    environment:
+      POSTGRES_DB: testdb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret_password
+    ports:
+      - "5434:5432" # Прокидываем наружу на 5433, чтобы не конфликтовать с локальным PG
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d testdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # --- 2. Приложение PII Guard ---
+  app:
+    build: .
+    container_name: pii_guard_app
+    depends_on:
+      db:
+        condition: service_healthy # Ждем, пока БД полностью поднимется
+    environment:
+      # Передаем настройки подключения внутрь контейнера
+      POSTGRES_DB: testdb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret_password
+      DB_HOST: db # Имя сервиса выше
+      DB_PORT: 5432
+    ports:
+      - "8501:8501" # Интерфейс Streamlit
+    volumes:
+      # Монтируем текущую папку, чтобы код можно было править на лету (опционально)
+      - .:/app
+    command: >
+      sh -c "python seed_data_relational.py && streamlit run app.py --server.port=8501 --server.address=0.0.0.0"
+
+volumes:
+  pg_data:
