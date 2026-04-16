@@ -593,7 +593,7 @@ def generate_sanitized_dump(findings, mode='mask', db_config=None):
         cmd = [
             'pg_dump',
             '-h', target_conf['host'],
-            '-p', target_conf['port'],
+            '-p', str(target_conf['port']),
             '-U', target_conf['user'],
             '--exclude-table-data=pii_guard.audit_log',
             '-f', dump_file,

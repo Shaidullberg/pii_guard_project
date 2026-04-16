@@ -1,5 +1,5 @@
 # Используем легкий образ Python
-FROM python:3.10-slim
+FROM python:3.10-slim-bookworm
 
 # Устанавливаем рабочую директорию
 WORKDIR /app

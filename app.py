@@ -618,11 +618,13 @@ with tab_history:
             if not isinstance(conn, str):
                 try:
                     df_db = pd.read_sql("SELECT event_time, db_user, table_name, operation, old_data, new_data FROM pii_guard.audit_log ORDER BY event_time DESC LIMIT 100", conn)
-                    st.dataframe(df_db, use_container_width=True)
+                    st.session_state["db_audit_logs"] = df_db
                 except Exception as e:
                     st.error(f"Ошибка чтения логов БД: {e}")
                 finally:
                     backend.close_connection(conn, current_db_config)
+        if "db_audit_logs" in st.session_state:
+            st.dataframe(st.session_state["db_audit_logs"], use_container_width=True)
 
 st.divider()
 st.caption("Postgres PII Guard Enterprise v2.0 | Курсовая работа | 2025")
